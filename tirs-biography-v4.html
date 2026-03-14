@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Tirs Biography</title>
+<style>
+/* ======================================
+   FONTS — inline @font-face fallback
+   If Google Fonts loads: Cairo + Amiri
+   If offline/blocked: Tahoma + Georgia
+====================================== */
+@font-face {
+  font-family: 'CairoFB';
+  src: local('Cairo'), local('Tahoma'), local('Arial');
+  font-display: swap;
+}
+
+:root {
+  --ff: 'Cairo', 'CairoFB', Tahoma, 'Arial Unicode MS', Arial, sans-serif;
+  --fs: 'Amiri', 'CairoFB', Georgia, 'Times New Roman', serif;
+  --bg:      #faf7f0;
+  --bg2:     #f0ebe0;
+  --bd:      #e0d9cc;
+  --ink:     #0d1b2a;
+  --ink2:    #3a3a3a;
+  --muted:   #7a7060;
+  --ac:      #c9a84c;
+  --ac2:     #f0d98a;
+  --white:   #fff;
+  --sh:      0 4px 24px rgba(13,27,42,0.11);
+  --r:       12px;
+  --wa:      #25D366;
+}
+body.t-blue   { --ink:#0b2540; --ac:#3b9dd4; --ac2:#a8d8f0; --bg:#f0f5fa; --bg2:#ddeaf5; --bd:#c0d8ee; }
+body.t-green  { --ink:#133320; --ac:#43a86e; --ac2:#a8dcc0; --bg:#f0faf4; --bg2:#d8f0e4; --bd:#b8ddc8; }
+body.t-red    { --ink:#3a0a0a; --ac:#d45f45; --ac2:#f0b8a8; --bg:#faf2f0; --bg2:#f0ddd8; --bd:#e0c0b8; }
+body.t-purple { --ink:#1e0a3a; --ac:#8055cc; --ac2:#cdb8f0; --bg:#f5f0fa; --bg2:#e8d8f5; --bd:#d0b8ee; }
+body.t-teal   { --ink:#042a2a; --ac:#2a9d8f; --ac2:#90d8d0; --bg:#f0fafa; --bg2:#d0eeec; --bd:#a8ddd8; }
+
+/* ===== RESET ===== */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { -webkit-text-size-adjust:100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--ff);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== HEADER ===== */
+header {
+  background: var(--ink);
+  padding: 18px 28px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: background .3s;
+}
+header::after {
+  content: '';
+  position: absolute; bottom:0; left:0; right:0; height:3px;
+  background: linear-gradient(90deg, var(--ac), var(--ac2), var(--ac));
+}
+header::before {
+  content: '';
+  position: absolute; inset:0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 22px,
+    rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 44px);
+}
+.logo { position: relative; z-index:1; }
+.logo-h1 {
+  font-family: var(--fs);
+  font-size: 1.7rem;
+  color: var(--ac);
+  line-height: 1;
+}
+.logo-sub { color: rgba(255,255,255,.45); font-size:.78rem; margin-top:2px; }
+.pill {
+  background: var(--ac);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: .7rem;
+  padding: 5px 14px;
+  border-radius: 20px;
+  position: relative; z-index:1;
+  letter-spacing: .7px;
+}
+
+/* ===== WRAP ===== */
+.wrap { max-width:860px; margin:0 auto; padding:26px 14px 60px; }
+
+/* ===== CARD ===== */
+.card {
+  background: var(--white);
+  border-radius: var(--r);
+  box-shadow: var(--sh);
+  padding: 28px 26px;
+  margin-bottom: 18px;
+  border: 1px solid var(--bd);
+}
+.card-title { font-family: var(--fs); font-size:1.4rem; margin-bottom:4px; }
+.card-sub {
+  color: var(--muted); font-size:.83rem;
+  padding-bottom:14px; margin-bottom:20px;
+  border-bottom: 1px solid var(--bd);
+}
+.card-sub strong { color: var(--ink); }
+.d-none { display:none !important; }
+.divider { border:none; border-top:1px solid var(--bd); margin:20px 0; }
+
+/* ===== STEPS ===== */
+.steps { display:-webkit-flex; display:flex; -webkit-flex-direction:column; flex-direction:column; gap:12px; margin-bottom:20px; }
+.step {
+  display:-webkit-flex; display:flex;
+  -webkit-align-items:flex-start; align-items:flex-start;
+  gap:12px; background:var(--bg);
+  border-radius:9px; padding:13px 16px;
+  border:1px solid var(--bd);
+}
+.snum {
+  background:var(--ac); color:var(--ink);
+  width:28px; height:28px; border-radius:50%;
+  display:-webkit-flex; display:flex;
+  -webkit-align-items:center; align-items:center;
+  -webkit-justify-content:center; justify-content:center;
+  font-weight:800; font-size:.82rem; flex-shrink:0;
+}
+.sc strong { display:block; font-size:.88rem; margin-bottom:3px; }
+.sc p { color:var(--muted); font-size:.8rem; line-height:1.5; }
+
+.brow {
+  display:-webkit-flex; display:flex;
+  -webkit-align-items:center; align-items:center;
+  gap:10px; background:var(--ink);
+  border-radius:8px; padding:10px 14px; margin-top:10px;
+}
+.bnum {
+  color:var(--ac); font-size:1.35rem; font-weight:800;
+  letter-spacing:3px; flex:1; text-align:center; font-family:monospace;
+}
+
+/* ===== CODE BOX ===== */
+.cbox {
+  background: var(--ink);
+  border-radius:11px; padding:24px; text-align:center;
+}
+.cbox-title { color:var(--ac); margin-bottom:12px; font-size:.95rem; }
+.cbox input {
+  background:rgba(255,255,255,.1);
+  border-color:rgba(255,255,255,.2);
+  color:#fff; text-align:center;
+  font-size:1.05rem; letter-spacing:2px;
+}
+.cbox input::-webkit-input-placeholder { color:rgba(255,255,255,.3); }
+.cbox input:-ms-input-placeholder { color:rgba(255,255,255,.3); }
+.cbox input::placeholder { color:rgba(255,255,255,.3); }
+.cbox input:focus {
+  border-color:var(--ac);
+  background:rgba(255,255,255,.15);
+  box-shadow:0 0 0 3px rgba(201,168,76,.2);
+}
+
+/* ===== FORM ===== */
+.fg { margin-bottom:13px; }
+.fg label {
+  display:block; font-size:.78rem;
+  font-weight:700; color:var(--muted);
+  margin-bottom:4px; letter-spacing:.2px;
+}
+input, textarea, select {
+  width:100%; padding:11px 13px;
+  border-radius:8px; border:1.5px solid var(--bd);
+  background:var(--bg); font-family:var(--ff);
+  font-size:.9rem; color:var(--ink);
+  outline:none; transition:.2s;
+  /* iOS fix */
+  -webkit-appearance:none;
+  appearance:none;
+}
+input:focus, textarea:focus {
+  border-color:var(--ac);
+  box-shadow:0 0 0 3px rgba(201,168,76,.13);
+  background:var(--white);
+}
+textarea { resize:vertical; min-height:78px; }
+input[type=file] {
+  cursor:pointer; padding:9px;
+  background:var(--bg2);
+  font-size:.82rem;
+}
+.r2 { display:-webkit-flex; display:flex; gap:12px; }
+.r2 > * { flex:1; min-width:0; }
+
+/* ===== BUTTONS ===== */
+.btn {
+  padding:11px 20px; border:none; border-radius:8px;
+  font-family:var(--ff); font-size:.87rem; font-weight:700;
+  cursor:pointer; transition:.18s;
+  display:-webkit-inline-flex; display:inline-flex;
+  -webkit-align-items:center; align-items:center;
+  gap:6px; text-align:center;
+  -webkit-appearance:none; touch-action:manipulation;
+}
+.btn:active { -webkit-transform:scale(.97); transform:scale(.97); }
+.b-dk  { background:var(--ink); color:var(--ac); }
+.b-ac  { background:var(--ac); color:var(--ink); }
+.b-ac:hover, .b-ac:active { background:var(--ac2); }
+.b-wa  { background:var(--wa); color:#fff; }
+.b-gh  { background:var(--bg2); color:var(--muted); border:1px solid var(--bd); }
+.b-sm  { padding:8px 14px; font-size:.78rem; }
+.b-fw  { width:100%; -webkit-justify-content:center; justify-content:center; }
+.brow-btns { display:-webkit-flex; display:flex; gap:9px; flex-wrap:wrap; margin-top:10px; }
+
+/* ===== TABS ===== */
+.tab-bar {
+  display:-webkit-flex; display:flex;
+  border-bottom:2px solid var(--bd);
+  margin-bottom:20px;
+  overflow-x:auto; -webkit-overflow-scrolling:touch;
+  gap:0;
+}
+.tab-bar::-webkit-scrollbar { display:none; }
+.tab {
+  padding:9px 18px; cursor:pointer;
+  font-weight:700; font-size:.83rem;
+  color:var(--muted); white-space:nowrap;
+  border-bottom:2px solid transparent;
+  margin-bottom:-2px; transition:.2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.tab.on { color:var(--ink); border-bottom-color:var(--ac); }
+.tp { display:none; }
+.tp.on { display:block; }
+
+/* ===== PROGRESS ===== */
+.prog-wrap { margin-bottom:18px; }
+.prog-lbl {
+  font-size:.76rem; color:var(--muted);
+  margin-bottom:4px;
+  display:-webkit-flex; display:flex;
+  -webkit-justify-content:space-between; justify-content:space-between;
+}
+.prog-bar { height:5px; background:var(--bg2); border-radius:3px; overflow:hidden; }
+.prog-fill {
+  height:100%;
+  background:linear-gradient(90deg,var(--ac),var(--ac2));
+  border-radius:3px; transition:width .4s ease; width:0%;
+}
+
+/* ===== COLOR PICKS ===== */
+.cpicks {
+  display:-webkit-flex; display:flex;
+  gap:10px; flex-wrap:wrap; margin-bottom:18px;
+}
+.cp {
+  width:34px; height:34px; border-radius:50%;
+  border:3px solid transparent; cursor:pointer;
+  transition:.18s; position:relative;
+  -webkit-tap-highlight-color:transparent;
+}
+.cp:active { -webkit-transform:scale(1.15); transform:scale(1.15); }
+.cp.on { border-color:var(--ac); }
+.cp.on::after {
+  content:'✓'; position:absolute; inset:0;
+  display:-webkit-flex; display:flex;
+  -webkit-align-items:center; align-items:center;
+  -webkit-justify-content:center; justify-content:center;
+  color:#fff; font-size:.72rem; font-weight:800;
+  text-shadow:0 1px 3px rgba(0,0,0,.6);
+}
+
+/* ===== TEMPLATE GRID ===== */
+.tgrid {
+  display:-webkit-flex; display:flex;
+  gap:10px; margin-bottom:18px; flex-wrap:wrap;
+}
+.tc {
+  flex:1; min-width:80px;
+  border:2px solid var(--bd); border-radius:9px;
+  padding:13px 8px; text-align:center;
+  cursor:pointer; transition:.18s; background:var(--bg);
+  -webkit-tap-highlight-color:transparent;
+}
+.tc.on { border-color:var(--ac); background:var(--bg2); }
+.tc-ico { font-size:1.5rem; margin-bottom:4px; }
+.tc span { font-size:.76rem; font-weight:700; color:var(--muted); display:block; }
+
+/* ===== ADMIN ===== */
+#adminPage { border:2px solid var(--ac); position:relative; margin-top:24px; }
+#adminPage::before {
+  content:'🔐 لوحة المدير';
+  position:absolute; top:-12px; right:16px;
+  background:var(--ac); color:var(--ink);
+  padding:2px 13px; border-radius:20px;
+  font-size:.72rem; font-weight:800;
+}
+.gbox {
+  background:var(--ink); border-radius:9px;
+  padding:20px; text-align:center; margin:14px 0;
+}
+.gval {
+  font-family:monospace; font-size:1.9rem;
+  color:var(--ac); letter-spacing:6px; font-weight:800;
+  min-height:2.4rem;
+  display:-webkit-flex; display:flex;
+  -webkit-align-items:center; align-items:center;
+  -webkit-justify-content:center; justify-content:center;
+}
+.gempty { color:rgba(255,255,255,.22); font-size:.85rem; font-family:var(--ff); letter-spacing:0; }
+
+/* ===== TOAST ===== */
+.toast {
+  position:fixed; bottom:22px; left:50%;
+  -webkit-transform:translateX(-50%) translateY(70px);
+  transform:translateX(-50%) translateY(70px);
+  background:var(--ink); color:var(--ac);
+  padding:11px 24px; border-radius:26px;
+  font-weight:700; font-size:.84rem;
+  z-index:9999; border:1.5px solid var(--ac);
+  pointer-events:none;
+  transition:-webkit-transform .3s ease;
+  transition:transform .3s ease;
+  white-space:nowrap; max-width:90vw; text-align:center;
+}
+.toast.on {
+  -webkit-transform:translateX(-50%) translateY(0);
+  transform:translateX(-50%) translateY(0);
+}
+
+/* ===== PREVIEW ===== */
+#prev-wrap { margin-top:22px; padding-top:20px; border-top:2px solid var(--bd); }
+.prev-hd {
+  display:-webkit-flex; display:flex;
+  -webkit-align-items:center; align-items:center;
+  -webkit-justify-content:space-between; justify-content:space-between;
+  margin-bottom:14px; gap:10px; flex-wrap:wrap;
+}
+.prev-hd h3 { font-family:var(--fs); font-size:1.15rem; }
+.prev-acts { display:-webkit-flex; display:flex; gap:8px; }
+#cv-out {
+  background:#fff; border:1px solid var(--bd);
+  border-radius:9px; overflow:hidden;
+  overflow-x:auto; /* mobile scroll if wide */
+  -webkit-overflow-scrolling:touch;
+}
+
+/* =============================================
+   CV TEMPLATES
+============================================= */
+
+/* ---- T1: Classic ---- */
+.t1-hd {
+  background:var(--ink); padding:28px 32px;
+  display:-webkit-flex; display:flex;
+  -webkit-align-items:center; align-items:center;
+  gap:18px; position:relative;
+  flex-wrap:wrap;
+}
+.t1-hd::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:4px;
+  background:linear-gradient(90deg,var(--ac),var(--ac2),var(--ac));
+}
+.cv-photo {
+  width:86px; height:86px; border-radius:50%;
+  object-fit:cover; border:3px solid var(--ac); flex-shrink:0;
+}
+.cv-ava {
+  width:86px; height:86px; border-radius:50%;
+  background:rgba(201,168,76,.18); border:3px solid var(--ac);
+  display:-webkit-flex; display:flex;
+  -webkit-align-items:center; align-items:center;
+  -webkit-justify-content:center; justify-content:center;
+  font-size:2.2rem; flex-shrink:0;
+}
+.cv-name { font-family:var(--fs); font-size:1.75rem; color:#fff; line-height:1.2; }
+.cv-job  { color:var(--ac); font-size:.88rem; font-weight:700; margin-top:3px; }
+.cv-meta { display:-webkit-flex; display:flex; gap:12px; margin-top:7px; flex-wrap:wrap; }
+.cv-meta span { color:rgba(255,255,255,.6); font-size:.76rem; }
+.t1-body { padding:26px 32px; }
+.cvsec { margin-bottom:20px; }
+.cvsec-t {
+  font-family:var(--fs); font-size:1rem;
+  color:var(--ink); border-bottom:2px solid var(--ac);
+  padding-bottom:4px; margin-bottom:9px;
+}
+.cvsec-b { color:var(--ink2); font-size:.86rem; line-height:2; white-space:pre-wrap; word-break:break-word; }
+.cvlinks { display:-webkit-flex; display:flex; gap:7px; flex-wrap:wrap; margin-top:5px; }
+.cvlinks a {
+  color:var(--ink); font-size:.76rem; text-decoration:none;
+  background:var(--bg); padding:4px 11px;
+  border-radius:18px; border:1px solid var(--bd);
+}
+.t1-ft {
+  background:var(--bg); padding:10px 32px;
+  text-align:center; color:var(--muted);
+  font-size:.72rem; border-top:1px solid var(--bd);
+}
+.t1-ft b { color:var(--ac); }
+
+/* ---- T2: Sidebar ---- */
+.t2 {
+  display:-webkit-flex; display:flex;
+  min-height:400px;
+}
+.t2-side {
+  background:var(--ink); padding:26px 18px;
+  display:-webkit-flex; display:flex;
+  -webkit-flex-direction:column; flex-direction:column;
+  gap:14px; width:210px; flex-shrink:0;
+}
+.t2 .cv-photo, .t2 .cv-ava {
+  width:80px; height:80px;
+  margin:0 auto 6px; display:block;
+}
+.t2 .cv-name { font-size:1.15rem; text-align:center; }
+.t2 .cv-job  { text-align:center; font-size:.8rem; }
+.t2-st { color:var(--ac); font-size:.76rem; font-weight:800; letter-spacing:.5px; border-bottom:1px solid rgba(201,168,76,.25); padding-bottom:4px; margin-bottom:6px; }
+.t2-sb { color:rgba(255,255,255,.65); font-size:.76rem; line-height:1.85; white-space:pre-wrap; word-break:break-word; }
+.t2-meta span { display:block; color:rgba(255,255,255,.6); font-size:.76rem; margin-bottom:3px; }
+.t2-main { padding:24px 22px; background:#fff; flex:1; min-width:0; }
+.t2-sect {
+  font-family:var(--fs); font-size:.97rem;
+  color:var(--ink); border-right:4px solid var(--ac);
+  padding-right:9px; margin-bottom:8px;
+}
+.t2-secb { color:var(--ink2); font-size:.84rem; line-height:1.9; white-space:pre-wrap; margin-bottom:16px; word-break:break-word; }
+
+/* ---- T3: Minimal ---- */
+.t3 { padding:38px 42px; background:#fff; }
+.t3-hd {
+  display:-webkit-flex; display:flex;
+  -webkit-align-items:flex-start; align-items:flex-start;
+  gap:18px; margin-bottom:24px;
+  padding-bottom:16px; border-bottom:1px solid var(--bd);
+  flex-wrap:wrap;
+}
+.t3 .cv-ava {
+  width:74px; height:74px; border-radius:10px;
+  background:var(--bg2); font-size:1.9rem; border:none;
+}
+.t3 .cv-photo { width:74px; height:74px; border-radius:10px; object-fit:cover; }
+.t3 .cv-name { font-size:1.8rem; }
+.t3 .cv-meta { margin-top:6px; }
+.t3sec { margin-bottom:18px; }
+.t3lbl { font-size:.68rem; font-weight:800; color:var(--muted); letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
+.t3line { width:32px; height:2px; background:var(--ac); margin-bottom:8px; }
+.t3body { color:var(--ink2); font-size:.85rem; line-height:2; white-space:pre-wrap; word-break:break-word; }
+
+/* ===== PRINT ===== */
+@media print {
+  header, .wrap > .card:not(#cvPage), #adminPage,
+  .brow-btns, .tab-bar, .prog-wrap, .prev-hd,
+  #prev-wrap > *:not(#cv-out), .toast { display:none !important; }
+  body * { visibility:hidden; }
+  #cv-out, #cv-out * { visibility:visible; }
+  #cv-out {
+    position:fixed; top:0; left:0; width:100%;
+    border:none !important; border-radius:0 !important;
+    box-shadow:none !important; overflow:visible !important;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:600px) {
+  .r2 { -webkit-flex-wrap:wrap; flex-wrap:wrap; }
+  .card { padding:20px 14px; }
+  .t1-hd, .t1-body, .t1-ft { padding-left:18px; padding-right:18px; }
+  .t2 { -webkit-flex-direction:column; flex-direction:column; }
+  .t2-side { width:100%; padding:20px 16px; }
+  .t2-main { padding:18px 16px; }
+  .t3 { padding:24px 18px; }
+  .cv-name { font-size:1.4rem !important; }
+  #cv-out { font-size:13px; }
+}
+</style>
+</head>
+<body>
+
+<header id="siteLogo">
+  <div class="logo">
+    <div class="logo-h1">✦ Tirs Biography</div>
+    <div class="logo-sub">منصة السيرة الذاتية الاحترافية</div>
+  </div>
+  <span class="pill">PRO ✦</span>
+</header>
+
+<div class="wrap">
+
+<!-- =========== PAYMENT =========== -->
+<div id="payPage" class="card">
+  <h2 class="card-title">الاشتراك الاحترافي</h2>
+  <p class="card-sub">وصول كامل · <strong>250 أوقية جديدة / شهرياً</strong></p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="snum">١</div>
+      <div class="sc">
+        <strong>انسخ رقم Bankily</strong>
+        <div class="brow">
+          <span class="bnum" id="bNum">48552753</span>
+          <button class="btn b-ac b-sm" onclick="copyBank()">📋 نسخ</button>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="snum">٢</div>
+      <div class="sc">
+        <strong>أرسل 250 أوقية عبر Bankily</strong>
+        <p>افتح التطبيق وحوّل المبلغ للرقم أعلاه</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="snum">٣</div>
+      <div class="sc">
+        <strong>أرسل لقطة الشاشة عبر واتساب</strong>
+        <p>ستحصل على رمز التفعيل فوراً</p>
+        <div class="brow-btns" style="margin-top:10px">
+          <button class="btn b-wa" onclick="goWa()">📲 واتساب</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="cbox">
+    <p class="cbox-title">🔑 رمز التفعيل</p>
+    <div class="fg" style="margin-bottom:12px">
+      <input id="codeIn" placeholder="أدخل رمز التحقق ...">
+    </div>
+    <button class="btn b-ac b-fw" onclick="doVerify()">تفعيل الاشتراك ✦</button>
+  </div>
+</div>
+
+<!-- =========== CV BUILDER =========== -->
+<div id="cvPage" class="card d-none">
+  <h2 class="card-title">إنشاء سيرتك الذاتية</h2>
+  <p class="card-sub">أدخل بياناتك واختر القالب ثم حمّل سيرتك</p>
+
+  <div class="prog-wrap">
+    <div class="prog-lbl"><span>اكتمال البيانات</span><span id="progPct">0%</span></div>
+    <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+  </div>
+
+  <div class="tab-bar">
+    <div class="tab on"  onclick="doTab('t1',this)">📋 المعلومات</div>
+    <div class="tab"     onclick="doTab('t2',this)">🔗 إضافات</div>
+    <div class="tab"     onclick="doTab('t3',this)">🎨 التصميم</div>
+  </div>
+
+  <!-- TAB 1 -->
+  <div id="t1" class="tp on">
+    <div class="r2">
+      <div class="fg"><label>الاسم الكامل *</label><input id="fn" placeholder="محمد ولد أحمد" oninput="doProgress()"></div>
+      <div class="fg"><label>العمر</label><input id="fa" placeholder="28 سنة" oninput="doProgress()"></div>
+    </div>
+    <div class="r2">
+      <div class="fg"><label>المدينة</label><input id="fc" placeholder="نواكشوط" oninput="doProgress()"></div>
+      <div class="fg"><label>المهنة *</label><input id="fj" placeholder="مهندس برمجيات" oninput="doProgress()"></div>
+    </div>
+    <div class="r2">
+      <div class="fg"><label>📞 الهاتف</label><input id="fph" placeholder="+222 20 00 00 00" oninput="doProgress()"></div>
+      <div class="fg"><label>✉ الإيميل</label><input id="fem" placeholder="example@gmail.com" oninput="doProgress()"></div>
+    </div>
+    <div class="fg"><label>⭐ المهارات *</label>
+      <textarea id="fsk" placeholder="العربية والفرنسية، مهارات الحاسوب، العمل الجماعي ..." oninput="doProgress()"></textarea></div>
+    <div class="fg"><label>💼 الخبرات *</label>
+      <textarea id="fex" placeholder="3 سنوات محاسبة، بكالوريوس إدارة الأعمال 2019 ..." oninput="doProgress()"></textarea></div>
+    <div class="fg"><label>🖼 الصورة (اختياري)</label>
+      <input type="file" id="fimg" accept="image/*"></div>
+  </div>
+
+  <!-- TAB 2 -->
+  <div id="t2" class="tp">
+    <div class="fg"><label>📝 الملخص الشخصي</label>
+      <textarea id="fsum" placeholder="فقرة تعريفية عن نفسك وأهدافك المهنية ..."></textarea></div>
+    <div class="fg"><label>📚 التعليم</label>
+      <textarea id="fedu" placeholder="بكالوريوس علوم الحاسوب — جامعة نواكشوط 2019"></textarea></div>
+    <div class="fg"><label>🌍 اللغات</label>
+      <input id="flan" placeholder="العربية (أصلية)، الفرنسية (متقدم)"></div>
+    <div class="fg"><label>🏆 الإنجازات والشهادات</label>
+      <textarea id="fcrt" placeholder="شهادة PMP، جائزة أفضل موظف 2023 ..."></textarea></div>
+    <hr class="divider">
+    <p style="font-size:.79rem;color:var(--muted);font-weight:700;margin-bottom:12px">🔗 روابط التواصل</p>
+    <div class="r2">
+      <div class="fg"><label>LinkedIn</label><input id="fli" placeholder="linkedin.com/in/user"></div>
+      <div class="fg"><label>الموقع</label><input id="fwb" placeholder="mysite.com"></div>
+    </div>
+    <div class="r2">
+      <div class="fg"><label>Twitter / X</label><input id="ftw" placeholder="@username"></div>
+      <div class="fg"><label>Facebook</label><input id="ffb" placeholder="facebook.com/user"></div>
+    </div>
+    <div class="r2">
+      <div class="fg"><label>Instagram</label><input id="fig" placeholder="@username"></div>
+      <div class="fg"><label>GitHub</label><input id="fgh" placeholder="github.com/user"></div>
+    </div>
+  </div>
+
+  <!-- TAB 3 -->
+  <div id="t3" class="tp">
+    <div class="fg">
+      <label>🎨 لون الهوية</label>
+      <div class="cpicks">
+        <div class="cp on"  style="background:#0d1b2a" onclick="doTheme('',this)"       title="ذهبي"></div>
+        <div class="cp"     style="background:#0b2540" onclick="doTheme('t-blue',this)"  title="أزرق"></div>
+        <div class="cp"     style="background:#133320" onclick="doTheme('t-green',this)" title="أخضر"></div>
+        <div class="cp"     style="background:#3a0a0a" onclick="doTheme('t-red',this)"   title="أحمر"></div>
+        <div class="cp"     style="background:#1e0a3a" onclick="doTheme('t-purple',this)"title="بنفسجي"></div>
+        <div class="cp"     style="background:#042a2a" onclick="doTheme('t-teal',this)"  title="تيل"></div>
+      </div>
+    </div>
+    <div class="fg">
+      <label>📄 اختر القالب</label>
+      <div class="tgrid">
+        <div class="tc on" id="tc1" onclick="doTpl(1,this)"><div class="tc-ico">🏛️</div><span>كلاسيكي</span></div>
+        <div class="tc"    id="tc2" onclick="doTpl(2,this)"><div class="tc-ico">📊</div><span>جانبي</span></div>
+        <div class="tc"    id="tc3" onclick="doTpl(3,this)"><div class="tc-ico">✨</div><span>مينيمال</span></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="brow-btns">
+    <button class="btn b-dk" onclick="doBuild()">✦ إنشاء السيرة</button>
+    <button class="btn b-ac" onclick="doPDF()">⬇ تحميل PDF</button>
+    <button class="btn b-gh" onclick="doReset()">🗑 مسح</button>
+  </div>
+
+  <div id="prev-wrap" class="d-none">
+    <div class="prev-hd">
+      <h3>معاينة السيرة</h3>
+      <div class="prev-acts">
+        <button class="btn b-ac b-sm" onclick="doPDF()">⬇ PDF</button>
+        <button class="btn b-gh b-sm" onclick="window.print()">🖨 طباعة</button>
+      </div>
+    </div>
+    <div id="cv-out"></div>
+  </div>
+</div>
+
+<!-- =========== ADMIN =========== -->
+<div id="adminPage" class="card d-none">
+  <h2 class="card-title" style="margin-top:8px">لوحة التحكم</h2>
+  <p class="card-sub">توليد رموز التفعيل للمشتركين</p>
+  <div class="gbox">
+    <div class="gval" id="gval"><span class="gempty">اضغط زر التوليد</span></div>
+  </div>
+  <div class="brow-btns">
+    <button class="btn b-ac" onclick="doGenCode()">✦ توليد رمز</button>
+    <button class="btn b-dk d-none" id="cpBtn" onclick="doCpCode()">📋 نسخ</button>
+  </div>
+  <p style="font-size:.76rem;color:var(--muted);margin-top:14px">⚠ الرمز مؤقت — يختفي عند إغلاق الصفحة</p>
+</div>
+
+</div><!-- /wrap -->
+<div class="toast" id="toast"></div>
+
+<!-- =========== Scripts — wrapped in DOMContentLoaded for mobile safety =========== -->
+<script>
+// Load Google Fonts non-blocking
+(function() {
+  try {
+    var lnk = document.createElement('link');
+    lnk.rel = 'stylesheet';
+    lnk.href = 'https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Amiri:wght@400;700&display=swap';
+    document.head.appendChild(lnk);
+  } catch(e) {}
+})();
+
+// Load html2pdf non-blocking
+(function() {
+  try {
+    var s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+    document.head.appendChild(s);
+  } catch(e) {}
+})();
+
+// Safe localStorage wrapper — avoids SecurityError on iOS Private + some Android
+var Store = (function() {
+  var mem = {};
+  try {
+    localStorage.setItem('__t','1');
+    localStorage.removeItem('__t');
+    return {
+      get: function(k) { try { return localStorage.getItem(k); } catch(e) { return mem[k]||null; } },
+      set: function(k,v) { try { localStorage.setItem(k,v); } catch(e) { mem[k]=v; } }
+    };
+  } catch(e) {
+    return {
+      get: function(k) { return mem[k]||null; },
+      set: function(k,v) { mem[k]=v; }
+    };
+  }
+})();
+
+// Wait for DOM
+document.addEventListener('DOMContentLoaded', function() {
+
+  // ---- STATE ----
+  var clicks = 0;
+  var curCode = '';
+  var curTpl  = 1;
+  var toastTid;
+
+  // ---- SECRET ADMIN ----
+  var siteLogo = document.getElementById('siteLogo');
+  if (siteLogo) {
+    siteLogo.addEventListener('click', function() {
+      clicks++;
+      if (clicks === 20) {
+        show('adminPage');
+        toast('تم فتح لوحة المدير 🔓');
+      }
+    });
+  }
+
+  // ---- AUTO UNLOCK ----
+  if (Store.get('tirs_pro') === 'yes') {
+    doUnlock();
+  }
+
+  // ---- EXPOSE GLOBALS (needed for inline onclick) ----
+  window.copyBank  = copyBank;
+  window.goWa      = goWa;
+  window.doVerify  = doVerify;
+  window.doTab     = doTab;
+  window.doTheme   = doTheme;
+  window.doTpl     = doTpl;
+  window.doProgress= doProgress;
+  window.doBuild   = doBuild;
+  window.doPDF     = doPDF;
+  window.doReset   = doReset;
+  window.doGenCode = doGenCode;
+  window.doCpCode  = doCpCode;
+
+  // ---- HELPERS ----
+  function show(id) {
+    var el = document.getElementById(id);
+    if (el) { el.classList.remove('d-none'); el.classList.remove('hidden'); }
+  }
+  function hide(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.add('d-none');
+  }
+  function val(id) {
+    var el = document.getElementById(id);
+    return el ? (el.value || '') : '';
+  }
+
+  // ---- TOAST ----
+  window.toast = function(msg, dur) {
+    dur = dur || 2800;
+    var el = document.getElementById('toast');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.add('on');
+    clearTimeout(toastTid);
+    toastTid = setTimeout(function() { el.classList.remove('on'); }, dur);
+  };
+
+  // ---- TABS ----
+  function doTab(id, el) {
+    var tps = document.querySelectorAll('.tp');
+    for (var i=0; i<tps.length; i++) tps[i].classList.remove('on');
+    var tabs = document.querySelectorAll('.tab');
+    for (var j=0; j<tabs.length; j++) tabs[j].classList.remove('on');
+    var tp = document.getElementById(id);
+    if (tp) tp.classList.add('on');
+    if (el) el.classList.add('on');
+  }
+
+  // ---- THEME ----
+  function doTheme(cls, el) {
+    var body = document.body;
+    body.classList.remove('t-blue','t-green','t-red','t-purple','t-teal');
+    if (cls) body.classList.add(cls);
+    var cps = document.querySelectorAll('.cp');
+    for (var i=0; i<cps.length; i++) cps[i].classList.remove('on');
+    if (el) el.classList.add('on');
+    toast('تم تغيير اللون ✓');
+  }
+
+  // ---- TEMPLATE ----
+  function doTpl(n, el) {
+    curTpl = n;
+    var tcs = document.querySelectorAll('.tc');
+    for (var i=0; i<tcs.length; i++) tcs[i].classList.remove('on');
+    if (el) el.classList.add('on');
+    var names = ['','الكلاسيكي','الجانبي','المينيمال'];
+    toast('القالب: ' + names[n] + ' ✓');
+  }
+
+  // ---- PROGRESS ----
+  function doProgress() {
+    var ids = ['fn','fj','fsk','fex','fc','fph'];
+    var done = 0;
+    for (var i=0; i<ids.length; i++) {
+      var el = document.getElementById(ids[i]);
+      if (el && el.value.trim() !== '') done++;
+    }
+    var pct = Math.round(done / ids.length * 100);
+    var fill = document.getElementById('progFill');
+    var lbl  = document.getElementById('progPct');
+    if (fill) fill.style.width = pct + '%';
+    if (lbl)  lbl.textContent = pct + '%';
+  }
+
+  // ---- PAYMENT ----
+  function copyBank() {
+    var n = document.getElementById('bNum').textContent.trim();
+    copyText(n, 'تم نسخ الرقم ✓');
+  }
+
+  function goWa() {
+    window.open('https://wa.me/22248552753', '_blank');
+  }
+
+  function doUnlock() {
+    hide('payPage');
+    show('cvPage');
+  }
+
+  function doVerify() {
+    var inp = document.getElementById('codeIn');
+    if (!inp) return;
+    var v = inp.value.trim().toUpperCase();
+    if (v && v === curCode) {
+      Store.set('tirs_pro', 'yes');
+      doUnlock();
+      toast('مرحباً! تم تفعيل اشتراكك 🎉', 3500);
+    } else {
+      inp.style.borderColor = '#e74c3c';
+      inp.style.background  = '#fff5f5';
+      setTimeout(function() {
+        inp.style.borderColor = '';
+        inp.style.background  = '';
+      }, 1800);
+      toast('رمز غير صحيح ✗');
+    }
+  }
+
+  // ---- ADMIN ----
+  function doGenCode() {
+    curCode = Math.random().toString(36).substring(2,10).toUpperCase();
+    var el = document.getElementById('gval');
+    if (el) el.textContent = curCode;
+    show('cpBtn');
+    toast('تم توليد رمز جديد ✓');
+  }
+
+  function doCpCode() {
+    copyText(curCode, 'تم نسخ الرمز ✓');
+  }
+
+  // ---- CLIPBOARD ----
+  function copyText(txt, msg) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(function() {
+        toast(msg);
+      }).catch(function() {
+        fallbackCopy(txt, msg);
+      });
+    } else {
+      fallbackCopy(txt, msg);
+    }
+  }
+
+  function fallbackCopy(txt, msg) {
+    var ta = document.createElement('textarea');
+    ta.value = txt;
+    ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;font-size:16px';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try { document.execCommand('copy'); toast(msg); } catch(e) { toast('تعذّر النسخ'); }
+    document.body.removeChild(ta);
+  }
+
+  // ---- RESET ----
+  function doReset() {
+    var ids = ['fn','fa','fc','fj','fph','fem','fsk','fex',
+               'fsum','fedu','flan','fcrt','fli','fwb','ftw','ffb','fig','fgh'];
+    for (var i=0; i<ids.length; i++) {
+      var el = document.getElementById(ids[i]);
+      if (el) el.value = '';
+    }
+    var fimg = document.getElementById('fimg');
+    if (fimg) fimg.value = '';
+    hide('prev-wrap');
+    doProgress();
+    toast('تم مسح البيانات 🗑');
+  }
+
+  // ---- SOCIAL LINKS ----
+  function buildSocial() {
+    var defs = [
+      { id:'fli', lbl:'🔗 LinkedIn',  pfx:'https://' },
+      { id:'fwb', lbl:'🌐 الموقع',    pfx:'https://' },
+      { id:'ftw', lbl:'🐦 Twitter',   pfx:'https://twitter.com/' },
+      { id:'ffb', lbl:'📘 Facebook',  pfx:'https://' },
+      { id:'fig', lbl:'📷 Instagram', pfx:'https://instagram.com/' },
+      { id:'fgh', lbl:'💻 GitHub',    pfx:'https://' },
+    ];
+    var html = '';
+    for (var i=0; i<defs.length; i++) {
+      var u = val(defs[i].id).trim();
+      if (u) {
+        var href = defs[i].pfx + u.replace(/^https?:\/\//, '');
+        html += '<a href="'+href+'" target="_blank">'+defs[i].lbl+'</a>';
+      }
+    }
+    return html ? '<div class="cvlinks">'+html+'</div>' : '';
+  }
+
+  function sec(title, body) {
+    if (!body.trim()) return '';
+    return '<div class="cvsec"><div class="cvsec-t">'+title+'</div><div class="cvsec-b">'+body+'</div></div>';
+  }
+
+  // ---- BUILD CV ----
+  function doBuild() {
+    var name = val('fn').trim();
+    if (!name) { toast('يرجى إدخال الاسم أولاً ⚠'); return; }
+
+    var fimg = document.getElementById('fimg');
+    if (fimg && fimg.files && fimg.files[0]) {
+      var r = new FileReader();
+      r.onload = function(e) { renderCV(e.target.result); };
+      r.readAsDataURL(fimg.files[0]);
+    } else {
+      renderCV(null);
+    }
+  }
+
+  function renderCV(photoSrc) {
+    var name = val('fn');
+    var age  = val('fa');
+    var city = val('fc');
+    var job  = val('fj');
+    var ph   = val('fph');
+    var em   = val('fem');
+    var sk   = val('fsk');
+    var ex   = val('fex');
+    var sum  = val('fsum');
+    var edu  = val('fedu');
+    var lan  = val('flan');
+    var crt  = val('fcrt');
+
+    var pEl = photoSrc
+      ? '<img class="cv-photo" src="'+photoSrc+'" alt="">'
+      : '<div class="cv-ava">👤</div>';
+
+    var meta = [];
+    if (age) meta.push('🎂 '+age);
+    if (city) meta.push('📍 '+city);
+    if (ph)  meta.push('📞 '+ph);
+    if (em)  meta.push('✉ '+em);
+    var metaHTML = meta.map(function(m){ return '<span>'+m+'</span>'; }).join('');
+
+    var social = buildSocial();
+    var html = '';
+
+    if (curTpl === 1) {
+      html = '<div>'
+        + '<div class="t1-hd">'
+        + pEl
+        + '<div><div class="cv-name">'+name+'</div>'
+        + '<div class="cv-job">'+job+'</div>'
+        + '<div class="cv-meta">'+metaHTML+'</div></div>'
+        + '</div>'
+        + '<div class="t1-body">'
+        + sec('📝 عن نفسي', sum)
+        + sec('⭐ المهارات', sk)
+        + sec('💼 الخبرات', ex)
+        + sec('📚 التعليم', edu)
+        + sec('🌍 اللغات', lan)
+        + sec('🏆 الإنجازات', crt)
+        + (social ? '<div class="cvsec"><div class="cvsec-t">🔗 التواصل</div>'+social+'</div>' : '')
+        + '</div>'
+        + '<div class="t1-ft">أُنشئت بواسطة <b>Tirs Biography</b></div>'
+        + '</div>';
+
+    } else if (curTpl === 2) {
+      html = '<div class="t2">'
+        + '<div class="t2-side">'
+        + pEl
+        + '<div class="cv-name">'+name+'</div>'
+        + '<div class="cv-job">'+job+'</div>'
+        + (meta.length ? '<div><div class="t2-st">التواصل</div><div class="t2-meta">'+meta.map(function(m){return '<span>'+m+'</span>';}).join('')+'</div></div>' : '')
+        + (lan ? '<div><div class="t2-st">اللغات</div><div class="t2-sb">'+lan+'</div></div>' : '')
+        + (sk  ? '<div><div class="t2-st">المهارات</div><div class="t2-sb">'+sk+'</div></div>' : '')
+        + '</div>'
+        + '<div class="t2-main">'
+        + (sum ? '<div class="t2-sect">عن نفسي</div><div class="t2-secb">'+sum+'</div>' : '')
+        + (ex  ? '<div class="t2-sect">💼 الخبرات</div><div class="t2-secb">'+ex+'</div>' : '')
+        + (edu ? '<div class="t2-sect">📚 التعليم</div><div class="t2-secb">'+edu+'</div>' : '')
+        + (crt ? '<div class="t2-sect">🏆 الإنجازات</div><div class="t2-secb">'+crt+'</div>' : '')
+        + (social ? '<div class="t2-sect">🔗 روابط</div>'+social : '')
+        + '</div>'
+        + '</div>';
+
+    } else {
+      html = '<div class="t3">'
+        + '<div class="t3-hd">'
+        + pEl
+        + '<div><div class="cv-name">'+name+'</div>'
+        + '<div class="cv-job">'+job+'</div>'
+        + '<div class="cv-meta">'+metaHTML+'</div></div>'
+        + '</div>'
+        + (sum ? '<div class="t3sec"><div class="t3lbl">ABOUT</div><div class="t3line"></div><div class="t3body">'+sum+'</div></div>' : '')
+        + (ex  ? '<div class="t3sec"><div class="t3lbl">EXPERIENCE</div><div class="t3line"></div><div class="t3body">'+ex+'</div></div>' : '')
+        + (edu ? '<div class="t3sec"><div class="t3lbl">EDUCATION</div><div class="t3line"></div><div class="t3body">'+edu+'</div></div>' : '')
+        + (sk  ? '<div class="t3sec"><div class="t3lbl">SKILLS</div><div class="t3line"></div><div class="t3body">'+sk+'</div></div>' : '')
+        + (lan ? '<div class="t3sec"><div class="t3lbl">LANGUAGES</div><div class="t3line"></div><div class="t3body">'+lan+'</div></div>' : '')
+        + (crt ? '<div class="t3sec"><div class="t3lbl">ACHIEVEMENTS</div><div class="t3line"></div><div class="t3body">'+crt+'</div></div>' : '')
+        + (social ? '<div class="t3sec"><div class="t3lbl">LINKS</div><div class="t3line"></div>'+social+'</div>' : '')
+        + '</div>';
+    }
+
+    document.getElementById('cv-out').innerHTML = html;
+    show('prev-wrap');
+    setTimeout(function() {
+      var pw = document.getElementById('prev-wrap');
+      if (pw) pw.scrollIntoView({ behavior:'smooth', block:'start' });
+    }, 300);
+    toast('تم إنشاء سيرتك الذاتية ✓');
+  }
+
+  // ---- PDF ----
+  function doPDF() {
+    var el = document.getElementById('cv-out');
+    if (!el || !el.innerHTML.trim()) { toast('أنشئ السيرة أولاً ⚠'); return; }
+
+    if (typeof html2pdf !== 'undefined') {
+      toast('جاري تحضير PDF ...', 3500);
+      try {
+        html2pdf().set({
+          margin: 0,
+          filename: 'سيرتي-الذاتية.pdf',
+          image: { type:'jpeg', quality:.97 },
+          html2canvas: { scale:2, useCORS:true, logging:false },
+          jsPDF: { unit:'mm', format:'a4', orientation:'portrait' }
+        }).from(el).save();
+      } catch(e) {
+        toast('استخدم زر الطباعة واختر PDF 🖨');
+        window.print();
+      }
+    } else {
+      toast('سيتم فتح نافذة الطباعة — اختر "حفظ كـ PDF"', 4000);
+      setTimeout(function() { window.print(); }, 600);
+    }
+  }
+
+}); // end DOMContentLoaded
+</script>
+</body>
+</html>
