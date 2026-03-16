@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إعلانات موريتانيا</title>
+
+<style>
+
+body{
+font-family: Arial;
+margin:0;
+background:#f2f2f2;
+direction:rtl;
+}
+
+header{
+background:#008000;
+color:white;
+padding:15px;
+text-align:center;
+font-size:22px;
+}
+
+.container{
+width:90%;
+margin:auto;
+margin-top:20px;
+}
+
+.form-box{
+background:white;
+padding:15px;
+border-radius:8px;
+margin-bottom:20px;
+}
+
+input,select,textarea{
+width:100%;
+padding:10px;
+margin-top:8px;
+margin-bottom:10px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+background:#008000;
+color:white;
+border:none;
+padding:10px;
+width:100%;
+font-size:16px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.ads{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+gap:15px;
+}
+
+.ad{
+background:white;
+padding:10px;
+border-radius:8px;
+box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+
+.ad img{
+width:100%;
+border-radius:5px;
+}
+
+.price{
+color:green;
+font-weight:bold;
+}
+
+.whatsapp{
+background:#25D366;
+margin-top:10px;
+}
+
+footer{
+margin-top:30px;
+text-align:center;
+padding:10px;
+background:#222;
+color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+موقع إعلانات موريتانيا
+</header>
+
+<div class="container">
+
+<div class="form-box">
+
+<h3>نشر إعلان جديد</h3>
+
+<input type="text" id="title" placeholder="عنوان الإعلان">
+
+<select id="category">
+<option>سيارات</option>
+<option>عقارات</option>
+<option>هواتف</option>
+<option>وظائف</option>
+<option>أخرى</option>
+</select>
+
+<input type="number" id="price" placeholder="السعر بالأوقية">
+
+<input type="text" id="phone" placeholder="رقم الهاتف أو واتساب">
+
+<input type="text" id="image" placeholder="رابط صورة الإعلان">
+
+<textarea id="desc" placeholder="وصف الإعلان"></textarea>
+
+<button onclick="addAd()">نشر الإعلان</button>
+
+</div>
+
+<h3>الإعلانات</h3>
+
+<div class="ads" id="ads"></div>
+
+</div>
+
+<footer>
+جميع الحقوق محفوظة © إعلانات موريتانيا
+</footer>
+
+<script>
+
+function addAd(){
+
+let title=document.getElementById("title").value
+let category=document.getElementById("category").value
+let price=document.getElementById("price").value
+let phone=document.getElementById("phone").value
+let image=document.getElementById("image").value
+let desc=document.getElementById("desc").value
+
+let ad={
+title,
+category,
+price,
+phone,
+image,
+desc
+}
+
+let ads=JSON.parse(localStorage.getItem("ads")||"[]")
+
+ads.push(ad)
+
+localStorage.setItem("ads",JSON.stringify(ads))
+
+showAds()
+
+}
+
+function showAds(){
+
+let ads=JSON.parse(localStorage.getItem("ads")||"[]")
+
+let container=document.getElementById("ads")
+
+container.innerHTML=""
+
+ads.reverse().forEach(ad=>{
+
+container.innerHTML+=`
+
+<div class="ad">
+
+<img src="${ad.image}">
+
+<h3>${ad.title}</h3>
+
+<p>${ad.desc}</p>
+
+<p class="price">${ad.price} أوقية</p>
+
+<a href="https://wa.me/${ad.phone}" target="_blank">
+
+<button class="whatsapp">تواصل واتساب</button>
+
+</a>
+
+</div>
+
+`
+
+})
+
+}
+
+showAds()
+
+</script>
+
+</body>
+</html>
